@@ -1,0 +1,121 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  background-color: #fcfaf2; /* Off-white paper color */
+  min-height: 100vh;
+}
+
+.blog-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.blog-header h1 {
+  font-size: 3.5rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  color: #1a1a1a;
+  font-weight: 800;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+}
+
+.subtitle {
+  font-style: italic;
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid #e0d9c0;
+  margin: 2rem 0;
+}
+
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.post-item {
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.post-item:hover {
+  transform: translateX(4px);
+}
+
+.post-item h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #222;
+}
+
+.post-date {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #888;
+  margin-bottom: 1rem;
+}
+
+.post-excerpt {
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+.read-more {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-style: italic;
+  color: #777;
+}
+
+.post-view {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 1rem;
+  color: #888;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 2rem;
+  transition: color 0.2s;
+  text-shadow: none;
+  box-shadow: none;
+}
+
+.back-btn:hover {
+  color: #222;
+}
+
+.post-content p {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+  color: #333;
+}
+
+.blog-footer {
+  margin-top: 6rem;
+  text-align: center;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.clickable {
+  cursor: pointer;
+}
