@@ -10,11 +10,11 @@ markdown: redcarpet
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : ayr.ca tech solutions
+title : Robert Schmidt
 tagline: Site Tagline
 author :
   name : Robert Schmidt
-  email : rob@ayr.ca
+  email : rjeschmi@gmail.com
   github : rjeschmi
   twitter : rjeschmi
 
@@ -26,7 +26,7 @@ author :
 # Else if you are pushing to username.github.io, replace with your username.
 # Finally if you are pushing to a GitHub project page, include the project name at the end.
 #
-production_url : http://ayr.ca
+production_url : https://rjeschmi.github.io
 
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #

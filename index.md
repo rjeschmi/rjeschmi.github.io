@@ -15,7 +15,7 @@ I'm Robert Schmidt, a Linux Systems Administrator by day and distracted by night
 ## Contact
 
 <ul>
-<li>email: rob@ayr.ca</li>
+<li>email: rjeschmi@gmail.com</li>
 <li>twitter: <a href="http://twitter.com/rjeschmi">rjeschmi</a></li>
 </ul>
 
