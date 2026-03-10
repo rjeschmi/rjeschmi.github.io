@@ -2,27 +2,20 @@
 name: Deploy static content to Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
   deploy:
     environment:
       name: github-pages
@@ -31,29 +24,56 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Checkout sensor-watch-ir-sender
+        uses: actions/checkout@v4
+        with:
+          repository: rjeschmi/sensor-watch-ir-sender
+          path: sensor-watch-ir-sender
+      - name: Checkout second-movement
+        uses: actions/checkout@v4
+        with:
+          repository: rjeschmi/second-movement
+          ref: set-time-with-ir
+          path: second-movement
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
       - name: Install dependencies
         run: bun install
-      - name: Checkout sensor-watch-ir-sender
-        uses: actions/checkout@v4
-        with:
-          repository: rjeschmi/sensor-watch-ir-sender
-          path: sensor-watch-ir-sender
       - name: Build
         run: bun run build
       - name: Copy sensor-watch-ir-sender
         run: |
           mkdir -p dist/sensor-watch-ir-sender
           cp sensor-watch-ir-sender/{index.html,app.js,protocol.js,style.css} dist/sensor-watch-ir-sender/
+      - name: Copy simulator
+        run: |
+          mkdir -p dist/simulator
+          cp second-movement/build-sim/{firmware.html,firmware.js,firmware.wasm} dist/simulator/
+      - name: Inject nav bar into static pages
+        run: |
+          python3 - <<'EOF'
+          import re
+
+          NAV = '''<nav style="position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(0,0,0,0.85);backdrop-filter:blur(4px);padding:8px 16px;font-family:sans-serif;font-size:13px;display:flex;gap:20px;align-items:center;">
+            <a href="/" style="color:#ccc;text-decoration:none;">⌂ Home</a>
+            <a href="/sensor-watch-ir-sender/" style="color:#ccc;text-decoration:none;">IR Sender</a>
+            <a href="/simulator/firmware.html" style="color:#ccc;text-decoration:none;">Simulator</a>
+          </nav><div style="height:36px"></div>'''
+
+          for path in ['dist/sensor-watch-ir-sender/index.html', 'dist/simulator/firmware.html']:
+              with open(path, 'r') as f:
+                  html = f.read()
+              html = re.sub(r'(<body[^>]*>)', r'\1' + NAV, html, count=1)
+              with open(path, 'w') as f:
+                  f.write(html)
+          EOF
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
           path: './dist'
       - name: Deploy to GitHub Pages
         id: deployment
