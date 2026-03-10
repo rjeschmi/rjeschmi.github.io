@@ -37,8 +37,17 @@ jobs:
           bun-version: latest
       - name: Install dependencies
         run: bun install
+      - name: Checkout sensor-watch-ir-sender
+        uses: actions/checkout@v4
+        with:
+          repository: rjeschmi/sensor-watch-ir-sender
+          path: sensor-watch-ir-sender
       - name: Build
         run: bun run build
+      - name: Copy sensor-watch-ir-sender
+        run: |
+          mkdir -p dist/sensor-watch-ir-sender
+          cp sensor-watch-ir-sender/{index.html,app.js,protocol.js,style.css} dist/sensor-watch-ir-sender/
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
