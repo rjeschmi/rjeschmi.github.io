@@ -1,0 +1,203 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace;
+    background: #1a1a2e;
+    color: #e0e0e0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+#app {
+    max-width: 480px;
+    width: 100%;
+}
+
+h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #00ff88;
+}
+
+.description {
+    color: #888;
+    margin-bottom: 1.5rem;
+}
+
+.current-time {
+    background: #16213e;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.current-time label {
+    font-size: 0.8rem;
+    color: #888;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+#clock {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #00ff88;
+}
+
+.settings {
+    background: #16213e;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.settings label {
+    font-size: 0.9rem;
+}
+
+.settings input[type="range"] {
+    flex: 1;
+    min-width: 120px;
+}
+
+#bit-rate-label {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.settings select {
+    background: #1a1a2e;
+    color: #e0e0e0;
+    border: 1px solid #444;
+    border-radius: 4px;
+    padding: 0.4rem;
+    font-size: 0.9rem;
+}
+
+.protocol-info {
+    background: #16213e;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.protocol-info h3 {
+    color: #aaa;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.protocol-info ul {
+    padding-left: 1.2rem;
+}
+
+.protocol-info li {
+    margin-bottom: 0.25rem;
+}
+
+#estimate {
+    margin-top: 0.5rem;
+    color: #00ff88;
+    font-weight: bold;
+}
+
+button {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.test-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.test-buttons button {
+    flex: 1;
+    padding: 0.75rem;
+    font-size: 0.9rem;
+    background: #2a2a4e;
+    color: #e0e0e0;
+    border: 1px solid #444;
+}
+
+.test-buttons button:active {
+    background: #444;
+}
+
+#send-btn {
+    background: #00ff88;
+    color: #1a1a2e;
+}
+
+#send-btn:active {
+    background: #00cc6a;
+}
+
+#abort-btn {
+    background: #ff4444;
+    color: white;
+}
+
+#status {
+    text-align: center;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    min-height: 2rem;
+}
+
+#status.sending { color: #ffaa00; }
+#status.success { color: #00ff88; }
+#status.error { color: #ff4444; }
+
+#progress-bar {
+    height: 4px;
+    background: #16213e;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+#progress-fill {
+    height: 100%;
+    width: 0;
+    background: #00ff88;
+    transition: width 0.05s linear;
+}
+
+/* Flash overlay covers entire screen */
+#flash-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+#flash-overlay.flash-white {
+    background: white;
+}
+
+#flash-overlay.flash-black {
+    background: black;
+}
